@@ -1,3 +1,8 @@
+import Header from "./components/header/header";
+
 export const App = () => {
-  return <div className="container vp20">App</div>;
+  return <>
+    <Header />
+    <main className="container vp20">main</main>
+  </>
 };
