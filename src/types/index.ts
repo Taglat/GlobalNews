@@ -10,6 +10,12 @@ export type NewsItemType = {
   url: string;
 }
 
+export type NewsApiResponse = {
+  news: NewsItemType[];
+  page: number;
+  status: string;
+}
+
 export type CategoriesType =
   | "regional"
   | "technology"
