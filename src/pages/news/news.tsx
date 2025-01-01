@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import cl from "./styles.module.css";
 import NewsBanner from "../../components/news-banner/news-banner";
-import { fetchNews } from "../../api/apiNews";
-import { NewsItemType } from "../../types";
+import { fetchNews, fetchCategories } from "../../api/apiNews";
+import { CategoriesType, NewsItemType } from "../../types";
 import NewsList from "../../components/news-list/news-list";
 import Skeleton from "../../components/skeleton/skeleton";
 import Pagination from "../../components/pagination/pagination";
+import Categories from "../../components/categories/categories";
 
 const News = () => {
   const [news, setNews] = useState<NewsItemType[]>([]);
@@ -13,11 +14,13 @@ const News = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
   const pageSize = 10;
+  const [categories, setCategories] = useState<(CategoriesType)[]>([] as (CategoriesType)[]);
+  const [selectedCategory, setSelectedCategory] = useState<CategoriesType>('All');
 
   const fetchAndSetNews = async () => {
     try {
       setIsLoading(true);
-      const response = await fetchNews({page_number: currentPage, page_size: pageSize});
+      const response = await fetchNews({page_number: currentPage, page_size: pageSize, category:  selectedCategory === 'All' ? null : selectedCategory});
       setNews(response.news);
     } catch (e) {
       console.log(e);
@@ -26,9 +29,22 @@ const News = () => {
     }
   };
 
+  const fetchAndSetCategories = async () => {
+    try {
+      const response = await fetchCategories();
+      setCategories(["All", ...response.categories]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchAndSetNews();
-  }, [currentPage]);
+  }, [currentPage, selectedCategory]);
+
+  useEffect(() => {
+    fetchAndSetCategories();
+  }, [])
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -48,8 +64,12 @@ const News = () => {
 
   return (
     <div className={cl.news}>
+      <Categories categories={categories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
+
       {isLoading ? <Skeleton count={1} type="banner" /> : (news.length > 0 && <NewsBanner item={news[0]} />)}
 
+      {isLoading ? <Skeleton count={10} type="item" /> : <NewsList news={news} /> }
+    
       <Pagination 
         totalPages={totalPages}
         handleNextPage={handleNextPage}
@@ -57,8 +77,6 @@ const News = () => {
         handlePageClick={handlePageClick}
         currentPage={currentPage}
       />
-
-      {isLoading ? <Skeleton count={10} type="item" /> : <NewsList news={news} /> }
     </div>
   );
 };

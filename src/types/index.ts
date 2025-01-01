@@ -62,4 +62,12 @@ export type CategoriesType =
   | "security"
   | "mobile"
   | "estate"
-  | "funny";
+  | "funny"
+  | "All";
+
+export type CategoriesApiResponse = {
+  categories: CategoriesType[];
+  description: string;
+  status: string;
+}
+  
