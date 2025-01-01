@@ -1,3 +1,4 @@
+import withSkeleton from "../../hocs/withSkeleton";
 import { NewsItemType } from "../../types";
 import NewsItem from "../news-item/news-item";
 import cl from "./styles.module.css";
@@ -12,4 +13,6 @@ const NewsList = ({ news }: { news: NewsItemType[] }) => {
   );
 };
 
-export default NewsList;
+const NewsListWithSkeleton = withSkeleton({Component: NewsList, type: "item", count: 10})
+
+export default NewsListWithSkeleton;

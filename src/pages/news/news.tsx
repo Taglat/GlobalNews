@@ -4,7 +4,6 @@ import NewsBanner from "../../components/news-banner/news-banner";
 import { fetchNews, fetchCategories } from "../../api/apiNews";
 import { CategoriesType, NewsItemType } from "../../types";
 import NewsList from "../../components/news-list/news-list";
-import Skeleton from "../../components/skeleton/skeleton";
 import Pagination from "../../components/pagination/pagination";
 import Categories from "../../components/categories/categories";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -78,10 +77,10 @@ const News = () => {
     <div className={cl.news}>
       <Categories categories={categories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
 
-      {isLoading ? <Skeleton count={1} type="banner" /> : (news.length > 0 && <NewsBanner item={news[0]} />)}
+      <NewsBanner item={news[0]} isLoading={isLoading} />
 
       <Search keywords={keywords} setKeywords={setKeywords} />
-      {isLoading ? <Skeleton count={10} type="item" /> : <NewsList news={news} /> }
+      <NewsList news={news} isLoading={isLoading} />
     
       <Pagination 
         totalPages={totalPages}

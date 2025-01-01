@@ -1,3 +1,5 @@
+export type SkeletonType = "banner" | "item";
+
 export type NewsItemType = {
   author: string;
   category: CategoriesType[];

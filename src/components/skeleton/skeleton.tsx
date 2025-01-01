@@ -4,10 +4,9 @@ const Skeleton = ({
   count = 1,
   type = "banner",
 }: {
-  count: number;
-  type: "banner" | "item";
+  count?: number;
+  type?: "banner" | "item";
 }) => {
-  console.log('render')
   return (
     <>
       {count > 1 ? (
