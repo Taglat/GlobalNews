@@ -8,16 +8,18 @@ type FetchNewsProps = {
   page_number: number;
   page_size: number;
   category: CategoriesType | null;
+  keywords: string;
 }
 
-export const fetchNews = async ({page_number = 1, page_size = 10, category}: FetchNewsProps):Promise<NewsApiResponse> => {
+export const fetchNews = async ({page_number = 1, page_size = 10, category, keywords}: FetchNewsProps):Promise<NewsApiResponse> => {
   try {
     const response = await axios.get(`${BASE_URL}search`, {
       params: {
         apiKey: API_KEY,
         page_number,
         page_size,
-        category
+        category,
+        keywords
       },
     });
 
