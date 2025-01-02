@@ -8,11 +8,3 @@
   flex: 1;
   max-width: 50%;
 }
-
-.bigNews > *:not(:last-child) {
-  margin-bottom: 20px;
-}
-
-.newsList > *:not(:last-child){
-  margin-bottom: 10px;
-}

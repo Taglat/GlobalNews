@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.newsList > *:not(:last-child){
+  margin-bottom: 10px;
+}

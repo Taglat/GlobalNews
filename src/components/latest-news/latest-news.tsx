@@ -1,15 +1,15 @@
 import cl from "./styles.module.css";
-import { NewsItemType } from "../../types";
 import BannersList from "../banners-list/banners-list";
+import { useFetch } from "../../hooks/useFetch";
+import { fetchLatestNews } from "../../api/apiNews";
 
-const LatestNews = ({ banners, isLoading }: {
-  banners: NewsItemType[];
-  isLoading: boolean;
-}) => {
+const LatestNews = () => {
+  const { data, isLoading } = useFetch(fetchLatestNews);
+
   return (
     <section className={cl.section}>
       <h2>🔥 Hot News</h2>
-      <BannersList banners={banners} isLoading={isLoading} />
+      <BannersList banners={data?.news || []} isLoading={isLoading} />
     </section>
   );
 };

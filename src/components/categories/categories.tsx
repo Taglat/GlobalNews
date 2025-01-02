@@ -7,8 +7,8 @@ const Categories = ({
   selectedCategory,
 }: {
   categories: (CategoriesType)[];
-  setSelectedCategory: (category: CategoriesType) => void;
-  selectedCategory: CategoriesType;
+  setSelectedCategory: (category: CategoriesType | null) => void;
+  selectedCategory: CategoriesType | null;
 }) => {
   return (
     <div className={cl.categories}>

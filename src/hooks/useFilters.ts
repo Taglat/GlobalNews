@@ -11,7 +11,7 @@ interface IFilters {
 export const useFilters = (initialFilters: IFilters) => {
   const [filters, setFilters] = useState<IFilters>(initialFilters);
 
-  const changeFilter = (key: string, value: string | null | number) => {
+  const changeFilter = (key: string, value: CategoriesType | string | number | null ) => {
     setFilters((prev) => {
       return { ...prev, [key]: value };
     });
