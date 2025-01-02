@@ -3,14 +3,16 @@ import cl from "./styles.module.css";
 const Skeleton = ({
   count = 1,
   type = "banner",
+  direction = "column"
 }: {
   count?: number;
   type?: "banner" | "item";
+  direction?: "column" | "row"
 }) => {
   return (
     <>
       {count > 1 ? (
-        <ul className={cl.list}>
+        <ul className={direction === "column" ? cl.columnList : cl.rowList}>
           {[...Array(count)].map((_, index) => (
             <li
               key={index}
