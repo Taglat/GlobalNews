@@ -55,10 +55,6 @@ const NewsByFilters = () => {
       <div className={cl.newsList}>
         <NewsFilters changeFilter={changeFilter} filters={filters} />
 
-        <Search
-          keywords={filters.keywords}
-          setKeywords={(keywords) => changeFilter("keywords", keywords)}
-        />
         <NewsList news={data?.news || []} isLoading={isLoading} />
 
         <Pagination

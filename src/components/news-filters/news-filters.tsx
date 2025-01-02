@@ -5,6 +5,7 @@ import Categories from "../categories/categories";
 import Search from "../search/search";
 import { CategoriesType, IFilters } from "../../types";
 import Slider from "../slider/slider"; 
+import { useTheme } from "../../context/theme-context";
 
 const NewsFilters = ({
   filters,
@@ -13,12 +14,13 @@ const NewsFilters = ({
   filters: IFilters;
   changeFilter: (key: string, filter: CategoriesType | string | number | null) => void;
 }) => {
+  const { isDark } = useTheme();
   const { data: dataCategories } = useFetch(fetchCategories);
 
   return (
     <div className={cl.filters}>
       {dataCategories ? (
-        <Slider>
+        <Slider isDark={isDark}>
           <Categories
             categories={dataCategories.categories}
             selectedCategory={filters.category}

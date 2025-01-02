@@ -27,6 +27,28 @@ a {
   margin: 0 auto;
 }
 
+.app.dark .container {
+  background-color: #23272f;
+}
+.app.light .container {
+  background-color: white;
+}
+
+.app.light p,
+.app.dark h3,
+.app.light h2,
+.app.light h1 {
+  color: black;
+}
+
+.app.dark p,
+.app.dark h3,
+.app.dark h2,
+.app.dark h1 {
+  color: #f6f7f9;
+}
+
+
 /* helpers */
 .p20 {
   padding: 20px;
