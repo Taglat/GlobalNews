@@ -1,7 +1,8 @@
+import { ForwardedRef, forwardRef } from "react";
 import { CategoriesType } from "../../types";
 import cl from "./styles.module.css";
 
-const Categories = ({
+const Categories = forwardRef(({
   categories,
   setSelectedCategory,
   selectedCategory,
@@ -9,9 +10,9 @@ const Categories = ({
   categories: (CategoriesType)[];
   setSelectedCategory: (category: CategoriesType | null) => void;
   selectedCategory: CategoriesType | null;
-}) => {
+}, ref: ForwardedRef<HTMLDivElement>) => {
   return (
-    <div className={cl.categories}>
+    <div ref={ref} className={cl.categories}>
       {categories.map((category) => {
         return (
           <button
@@ -25,6 +26,8 @@ const Categories = ({
       })}
     </div>
   );
-};
+});
+
+Categories.displayName = "Categories";
 
 export default Categories;
