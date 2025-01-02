@@ -1,15 +1,8 @@
 import axios from "axios";
-import { CategoriesApiResponse, CategoriesType, NewsApiResponse, ParamsType } from "../types";
+import { CategoriesApiResponse, NewsApiResponse, ParamsType } from "../types";
 
 const BASE_URL = import.meta.env.VITE_NEWS_BASE_API_URL;
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
-
-type FetchNewsProps = {
-  page_number: number;
-  page_size: number;
-  category: CategoriesType | null;
-  keywords: string;
-}
 
 export const fetchNews = async (params?: ParamsType):Promise<NewsApiResponse> => {
   try {
@@ -34,6 +27,19 @@ export const fetchNews = async (params?: ParamsType):Promise<NewsApiResponse> =>
   } catch (err) {
     console.log(err);
     return { news: [], page: 1, status: "news api error" };
+  }
+};
+
+export const fetchLatestNews = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}latest-news`, {
+      params: {
+        apiKey: API_KEY,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
 };
 

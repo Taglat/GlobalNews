@@ -4,7 +4,7 @@ import Image from "../image/image";
 import cl from "./styles.module.css";
 import withSkeleton from "../../hocs/withSkeleton";
 
-const NewsBanner = ({ item }: { item: NewsItemType | null}) => {
+export const NewsBanner = ({ item }: { item: NewsItemType | null}) => {
   if (!item) {
     return null;
   }
@@ -20,6 +20,4 @@ const NewsBanner = ({ item }: { item: NewsItemType | null}) => {
   );
 };
 
-const NewsBannerWithSkeleton = withSkeleton({Component: NewsBanner, type: "banner", count: 1})
-
-export default NewsBannerWithSkeleton;
+export const NewsBannerWithSkeleton = withSkeleton({Component: NewsBanner, type: "banner", count: 1 })
