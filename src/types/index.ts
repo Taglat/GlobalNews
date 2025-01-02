@@ -18,6 +18,21 @@ export type NewsApiResponse = {
   status: string;
 }
 
+export type IFilters = {
+  page_number: number;
+  page_size: number;
+  category: CategoriesType | null;
+  keywords: string;
+}
+
+export type ParamsType = Partial<IFilters>;
+
+export type CategoriesApiResponse = {
+  categories: CategoriesType[];
+  description: string;
+  status: string;
+}
+
 export type CategoriesType =
   | "regional"
   | "technology"
@@ -65,11 +80,6 @@ export type CategoriesType =
   | "mobile"
   | "estate"
   | "funny"
-  | "All";
+  | null;
 
-export type CategoriesApiResponse = {
-  categories: CategoriesType[];
-  description: string;
-  status: string;
-}
   

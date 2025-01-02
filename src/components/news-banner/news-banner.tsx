@@ -4,7 +4,11 @@ import Image from "../image/image";
 import cl from "./styles.module.css";
 import withSkeleton from "../../hocs/withSkeleton";
 
-const NewsBanner = ({ item }: { item: NewsItemType }) => {
+const NewsBanner = ({ item }: { item: NewsItemType | null}) => {
+  if (!item) {
+    return null;
+  }
+
   return (
     <div className={cl.banner}>
       <Image image={item?.image} />
