@@ -1,10 +1,9 @@
 import cl from "./styles.module.css";
 import BannersList from "../banners-list/banners-list";
-import { useFetch } from "../../hooks/useFetch";
-import { fetchLatestNews } from "../../api/apiNews";
+import { useGetLatestNewsQuery } from "../../store/services/newsApi";
 
 const LatestNews = () => {
-  const { data, isLoading } = useFetch(fetchLatestNews);
+  const { data, isLoading } = useGetLatestNewsQuery(null);
 
   return (
     <section className={cl.section}>
