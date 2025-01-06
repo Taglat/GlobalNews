@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#root {
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.app.dark .container {
+  background-color: #23272f;
+}
+.app.light .container {
+  background-color: white;
+}
+
+.app.light p,
+.app.dark h3,
+.app.light h2,
+.app.light h1 {
+  color: black;
+}
+
+.app.dark p,
+.app.dark h3,
+.app.dark h2,
+.app.dark h1 {
+  color: #f6f7f9;
+}
+
+
+/* helpers */
+.p20 {
+  padding: 20px;
+}
+.vp20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.hp20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
