@@ -1,11 +1,20 @@
-.item {
+.card {
   display: flex;
   width: 100%;
   gap: 12px;
 }
 
-.subtitle {
-  color: #ccc;
+.banner {
+  flex-direction: column;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.extra {
+  font-size: 12px;
+  color: #6c7072;
 }
 
 .info {

@@ -1,7 +1,7 @@
 import cl from "./styles.module.css";
 import { useAppDispatch } from "@/app/appStore";
 import { useTheme } from "@/app/providers/ThemeProvider";
-import { useGetCategoriesQuery } from "@/entities/category/api/categoriesApi";
+import { CategoriesType } from "@/entities/category";
 import { setFilters } from "@/entities/news/model/newsSlice";
 import { Categories } from "@/features/category";
 import { Search } from "@/features/search";
@@ -10,19 +10,20 @@ import { IFilters } from "@/shared/types";
 
 const NewsFilters = ({
   filters,
+  categories
 }: {
   filters: IFilters;
+  categories?: CategoriesType[];
 }) => {
   const { isDark } = useTheme();
-  const {data} = useGetCategoriesQuery(null);
   const dispatch = useAppDispatch();
 
   return (
     <div className={cl.filters}>
-      {data ? (
+      {categories ? (
         <Slider isDark={isDark}>
           <Categories
-            categories={data.categories}
+            categories={categories}
             selectedCategory={filters.category}
             setSelectedCategory={(category) => dispatch(setFilters({ key: "category", value: category }))}
           />

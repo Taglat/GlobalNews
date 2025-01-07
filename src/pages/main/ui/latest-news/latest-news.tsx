@@ -1,5 +1,5 @@
 import cl from "./styles.module.css";
-import BannersList from "@/widgets/news/ui/banners-list/banners-list";
+import { NewsList } from "@/widgets/news";
 import { useGetLatestNewsQuery } from "@/entities/news/api/newsApi";
 
 
@@ -9,7 +9,7 @@ const LatestNews = () => {
   return (
     <section className={cl.section}>
       <h2>🔥 Hot News</h2>
-      <BannersList banners={data?.news || []} isLoading={isLoading} />
+      <NewsList type="banner" news={data && data.news} isLoading={isLoading} />
     </section>
   );
 };

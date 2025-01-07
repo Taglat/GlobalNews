@@ -1,13 +1,13 @@
 import cl from "./styles.module.css";
 import { useAppDispatch, useAppSelector } from "@/app/appStore";
-import { NewsBanner } from "@/entities/news";
+import { useGetCategoriesQuery } from "@/entities/category/api/categoriesApi";
 import { useGetNewsQuery } from "@/entities/news/api/newsApi";
 import { setFilters } from "@/entities/news/model/newsSlice";
 import { Pagination } from "@/features/pagination";
 import { TOTAL_PAGES } from "@/shared/constants/constants";
 import { useDebounce } from "@/shared/hooks/useDebounce";
 import { NewsList } from "@/widgets/news";
-import NewsFilters from "../news-filters/news-filters";
+import { NewsFilters } from "@/widgets/news";
 
 
 const NewsByFilters = () => {
@@ -24,6 +24,8 @@ const NewsByFilters = () => {
     ...filters,
     keywords: debouncedKeywords,
   });
+
+  const { data } = useGetCategoriesQuery(null);
 
   const handleNextPage = () => {
     if (filters.page_number < TOTAL_PAGES) {
@@ -46,23 +48,16 @@ const NewsByFilters = () => {
   };
 
   return (
-    <section className={cl.section}>
-      <h2>🌎 Big News</h2>
-      <NewsBanner item={news?.[0] || null} />
-
-      <div className={cl.newsList}>
-        <NewsFilters filters={filters} />
-
-        <NewsList news={news || []} isLoading={isLoading} />
-
-        <Pagination
-          totalPages={TOTAL_PAGES}
-          handleNextPage={handleNextPage}
-          handlePreviousPage={handlePreviousPage}
-          handlePageClick={handlePageClick}
-          currentPage={filters.page_number}
-        />
-      </div>
+    <section className={`${cl.section} ${cl.newsList}`}>
+      <NewsFilters categories={data && data.categories} filters={filters} />
+      <Pagination
+        totalPages={TOTAL_PAGES}
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+        handlePageClick={handlePageClick}
+        currentPage={filters.page_number}
+      />
+      <NewsList news={news || []} isLoading={isLoading} />
     </section>
   );
 };
