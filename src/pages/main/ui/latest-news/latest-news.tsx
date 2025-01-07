@@ -19,7 +19,7 @@ const LatestNews = () => {
   return (
     <section className={cl.section}>
       <h2>🔥 Hot News</h2>
-      <NewsList type="banner" news={data && data.news} isLoading={isLoading} viewNewsSlot={(news: NewsItemType) => (
+      <NewsList type="banner" direction="row" news={data && data.news} isLoading={isLoading} viewNewsSlot={(news: NewsItemType) => (
           <p onClick={() => navigateTo(news)}>view more...</p>
       )}/>
     </section>

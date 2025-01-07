@@ -4,11 +4,14 @@ import { NewsCard } from "@/entities/news";
 import cl from "./styles.module.css";
 import { ReactNode } from "react";
 
-const NewsList = ({ news, type = "item", viewNewsSlot }: {
+type Props = {
   news?: NewsItemType[];
   type?: "banner" | "item";
+  direction?: "row" | "column" 
   viewNewsSlot?: (news: NewsItemType) => ReactNode;
-}) => {
+}
+
+const NewsList = ({ news, type = "item", viewNewsSlot }: Props) => {
   return (
     <ul className={`${type === "item" ? cl.items : cl.banners}`}>
       {news?.map((item) => {
@@ -18,6 +21,6 @@ const NewsList = ({ news, type = "item", viewNewsSlot }: {
   );
 };
 
-const NewsListWithSkeleton = withSkeleton({Component: NewsList, count: 10})
+const NewsListWithSkeleton = withSkeleton<Props>({Component: NewsList, count: 10})
 
 export default NewsListWithSkeleton;

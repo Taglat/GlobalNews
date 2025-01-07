@@ -57,7 +57,7 @@ const NewsByFilters = () => {
         handlePageClick={handlePageClick}
         currentPage={filters.page_number}
       />
-      <NewsList news={news || []} isLoading={isLoading} />
+      <NewsList news={news || []} type="item" direction="column" isLoading={isLoading} />
     </section>
   );
 };

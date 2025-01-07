@@ -1,3 +1,4 @@
+import { SkeletonType } from "@/shared/types";
 import cl from "./styles.module.css";
 
 const Skeleton = ({
@@ -6,7 +7,7 @@ const Skeleton = ({
   direction = "column"
 }: {
   count?: number;
-  type?: "banner" | "item";
+  type?: SkeletonType;
   direction?: "column" | "row"
 }) => {
   return (
